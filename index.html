@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Pannic editor</title>
+    <link rel="stylesheet" href="./styles/index.css">
+</head>
+<body>
+    <div class="window">
+
+        <div class="titlebar">
+            <div class="brand"><span class="logo"></span><span>Pannic editor</span></div>
+        </div>
+
+        <div class="content">
+
+            <section class="panel left">
+                <div class="dropzone" id="dropzone">
+                    <div class="upload-icon">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20V5M5 12l7-7 7 7"/></svg>
+                    </div>
+                    <h2>Arrastra un video aquí</h2>
+                    <p>Formatos MP4 y MOV</p>
+                    <label class="pick">
+                        Seleccionar video
+                        <input type="file" id="video-input" accept=".mp4,.mov,video/mp4,video/quicktime">
+                    </label>
+                </div>
+            </section>
+
+            <aside class="panel right">
+                <h3>Opciones</h3>
+
+                <div class="option">
+                    <div>
+                        <div class="name">caption?</div>
+                        <div class="hint">Subtítulos automáticos</div>
+                    </div>
+                    <label class="toggle">
+                        <input type="checkbox" id="switch-caption" role="switch">
+                        <span class="track"></span>
+                    </label>
+                </div>
+
+                <div class="option">
+                    <div>
+                        <div class="name">cut silences?</div>
+                        <div class="hint">Elimina las pausas</div>
+                    </div>
+                    <label class="toggle">
+                        <input type="checkbox" id="switch-cut-silences" role="switch">
+                        <span class="track"></span>
+                    </label>
+                </div>
+
+                <button class="export" id="btn-export" disabled>Exportar</button>
+            </aside>
+
+        </div>
+    </div>
+
+    <script>
+        const zone = document.getElementById('dropzone');
+        const input = document.getElementById('video-input');
+        const exportBtn = document.getElementById('btn-export');
+
+        const enable = () => { 
+            exportBtn.disabled = !input.files.length; 
+        };
+
+        input.addEventListener('change', enable);
+
+        ['dragenter', 'dragover'].forEach((t) => 
+            zone.addEventListener(t, (e) => { 
+                e.preventDefault(); zone.classList.add('over'); 
+            }));
+
+        ['dragleave', 'drop'].forEach((t) => zone.addEventListener(t, (e) => { 
+            e.preventDefault(); zone.classList.remove('over'); 
+        }));
+
+        zone.addEventListener('drop', (e) => { 
+            if (e.dataTransfer.files.length) { 
+                input.files = e.dataTransfer.files; enable(); 
+            } 
+        });
+    </script>
+</body>
+</html>

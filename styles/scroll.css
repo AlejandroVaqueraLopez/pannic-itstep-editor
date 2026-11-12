@@ -1,0 +1,42 @@
+.video-options::-webkit-scrollbar {
+    width: 8px;
+}
+
+.video-options::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.video-options::-webkit-scrollbar-thumb {
+    background: #3E474F;
+    border-radius: 4px;
+}
+
+.video-options::-webkit-scrollbar-thumb:hover {
+    background: #5a6570;
+}
+
+.video-options::-webkit-scrollbar-button {
+    display: none;                              /* removes the arrows */
+}
+
+
+.video-preview::-webkit-scrollbar {
+    width: 8px;
+}
+
+.video-preview::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.video-preview::-webkit-scrollbar-thumb {
+    background: #3E474F;
+    border-radius: 4px;
+}
+
+.video-preview::-webkit-scrollbar-thumb:hover {
+    background: #5a6570;
+}
+
+.video-preview::-webkit-scrollbar-button {
+    display: none;                              /* removes the arrows */
+}
